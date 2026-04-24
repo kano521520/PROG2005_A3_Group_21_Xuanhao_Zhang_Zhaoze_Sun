@@ -30,4 +30,8 @@ export class InventoryService {
   delete(name: string): Observable<string> {
     return this.http.delete(`${this.API_URL}/${name}`, { responseType: 'text' });
   }
+
+   addItem(item: Omit<InventoryItem, 'id'>): Observable<InventoryItem> {
+    return this.http.post<InventoryItem>(this.API_URL, item);
+  }
 }

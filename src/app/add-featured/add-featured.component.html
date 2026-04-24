@@ -1,3 +1,71 @@
-<p>
-  add-featured works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/inventory-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add New Item</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="saveItem()" [disabled]="isLoading">
+        <ion-icon name="save-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-progress-bar *ngIf="isLoading" type="indeterminate"></ion-progress-bar>
+
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Item Name *</ion-label>
+      <ion-input [(ngModel)]="newItem.item_name" type="text" maxlength="50" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Category *</ion-label>
+      <ion-input [(ngModel)]="newItem.category" type="text" maxlength="20" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Supplier Name *</ion-label>
+      <ion-input [(ngModel)]="newItem.supplier_name" type="text" maxlength="50" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Price ($) *</ion-label>
+      <ion-input [(ngModel)]="newItem.price" type="number" min="0" step="0.01" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Quantity *</ion-label>
+      <ion-input [(ngModel)]="newItem.quantity" type="number" min="0" step="1" (ionChange)="onQuantityChange()" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Featured Item</ion-label>
+      <ion-toggle [(ngModel)]="newItem.featured_item"></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Special Note</ion-label>
+      <ion-input [(ngModel)]="newItem.special_note" type="text" maxlength="200"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-text color="medium">
+        <small>Stock status will be automatically set based on quantity.</small>
+      </ion-text>
+    </ion-item>
+  </ion-list>
+
+  <div class="ion-padding">
+    <ion-button expand="block" (click)="saveItem()" [disabled]="isLoading">
+      <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+      Add Item
+    </ion-button>
+    <ion-button expand="block" fill="outline" (click)="cancel()">
+      <ion-icon name="close-outline" slot="start"></ion-icon>
+      Cancel
+    </ion-button>
+  </div>
+</ion-content>
