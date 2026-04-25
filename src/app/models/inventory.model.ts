@@ -13,4 +13,5 @@ export interface InventoryItem {
   stock_status: string;
   featured_item: number;
   special_note?: string | null;
+  
 }

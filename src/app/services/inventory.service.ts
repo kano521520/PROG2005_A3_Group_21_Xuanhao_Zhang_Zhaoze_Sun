@@ -1,3 +1,7 @@
+/**
+ * Author: Xuanhao Zhang (202300408010)
+ * Task: Assessment 3 - Tab 1 & Tab 3 Implementation
+ */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -29,5 +33,9 @@ export class InventoryService {
 
   delete(name: string): Observable<string> {
     return this.http.delete(`${this.API_URL}/${name}`, { responseType: 'text' });
+  }
+
+   addItem(item: Omit<InventoryItem, 'id'>): Observable<InventoryItem> {
+    return this.http.post<InventoryItem>(this.API_URL, item);
   }
 }
