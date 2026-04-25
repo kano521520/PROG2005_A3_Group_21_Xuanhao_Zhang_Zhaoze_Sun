@@ -1,7 +1,3 @@
-/**
- * Author: Xuanhao Zhang (202300408010)
- * Task: Assessment 3 - Tab 1 & Tab 3 Implementation
- */
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
