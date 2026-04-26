@@ -2,8 +2,8 @@
   <ion-toolbar>
     <ion-title>Manage Items</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="loadData()">
-        <ion-icon name="refresh-outline" slot="icon-only"></ion-icon>
+      <ion-button (click)="showHelp()">
+        <ion-icon name="help-circle-outline" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -11,7 +11,7 @@
 
 <ion-content class="ion-padding">
   <ion-searchbar 
-    placeholder="Search name..." 
+    placeholder="Search name to edit..." 
     [(ngModel)]="searchQuery" 
     (ionInput)="onSearch()"
     debounce="500">
@@ -21,26 +21,14 @@
 
   <ion-card *ngFor="let product of displayList">
     <ion-card-header>
-      <ion-card-subtitle>{{ getCategoryLabel(product.category) }}</ion-card-subtitle>
+      <ion-card-subtitle>{{ product.category }}</ion-card-subtitle>
       <ion-card-title>{{ product.item_name }}</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
       <p>Price: <b>${{ product.price }}</b> | Qty: <b>{{ product.quantity }}</b></p>
-      <p>Supplier: <b>{{ product.supplier_name }}</b></p>
-      <div class="ion-margin-top">
-        <ion-badge [color]="product.stock_status === 'In stock' ? 'success' : 'danger'">
-          {{ product.stock_status }}
-        </ion-badge>
-        <ion-chip *ngIf="product.featured_item === 1" color="warning">
-          <ion-icon name="star"></ion-icon>
-          <ion-label>Featured</ion-label>
-        </ion-chip>
-      </div>
-
-      <!-- Action buttons -->
       <div class="action-buttons ion-margin-top">
-        <ion-button fill="outline" color="primary" size="small" (click)="openEdit(product)">
+        <ion-button fill="outline" size="small" (click)="openEdit(product)">
           <ion-icon name="create-outline" slot="start"></ion-icon>
           Edit
         </ion-button>
@@ -53,12 +41,10 @@
   </ion-card>
 
   <div *ngIf="displayList.length === 0 && !showLoading" class="ion-text-center ion-padding">
-    <ion-icon name="archive-outline" size="large" color="medium"></ion-icon>
     <p>No items found.</p>
   </div>
 </ion-content>
 
-<!-- ========== Edit Modal ========== -->
 <ion-modal [isOpen]="showEditModal" (didDismiss)="closeEdit()">
   <ng-template>
     <ion-header>
@@ -73,67 +59,33 @@
     </ion-header>
 
     <ion-content class="ion-padding">
-      <ion-progress-bar *ngIf="isSaving" type="indeterminate"></ion-progress-bar>
-
       <ion-list>
         <ion-item>
-          <ion-label position="stacked">Item Name *</ion-label>
-          <ion-input [(ngModel)]="editingItem.item_name" type="text" maxlength="50" required></ion-input>
+          <ion-label position="stacked">Price ($)</ion-label>
+          <ion-input [(ngModel)]="editingItem.price" type="number"></ion-input>
         </ion-item>
-
         <ion-item>
-          <ion-label position="stacked">Category *</ion-label>
-          <ion-select [(ngModel)]="editingItem.category" interface="action-sheet" placeholder="Select a category">
-            <ion-select-option *ngFor="let opt of categoryOptions" [value]="opt.value">
-              {{ opt.label }}
-            </ion-select-option>
+          <ion-label position="stacked">Quantity</ion-label>
+          <ion-input [(ngModel)]="editingItem.quantity" type="number"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Category</ion-label>
+          <ion-select [(ngModel)]="editingItem.category">
+            <ion-select-option *ngFor="let opt of categoryOptions" [value]="opt.value">{{opt.label}}</ion-select-option>
           </ion-select>
         </ion-item>
-
-        <ion-item>
-          <ion-label position="stacked">Supplier Name *</ion-label>
-          <ion-input [(ngModel)]="editingItem.supplier_name" type="text" maxlength="50" required></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="stacked">Price ($) *</ion-label>
-          <ion-input [(ngModel)]="editingItem.price" type="number" min="0" step="0.01" required></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="stacked">Quantity *</ion-label>
-          <ion-input [(ngModel)]="editingItem.quantity" type="number" min="0" step="1" required></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Featured Item</ion-label>
-          <ion-toggle [(ngModel)]="editingItem.featured_item"></ion-toggle>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="stacked">Special Note</ion-label>
-          <ion-input [(ngModel)]="editingItem.special_note" type="text" maxlength="200"></ion-input>
-        </ion-item>
       </ion-list>
-    </ion-content>
-
-    <ion-footer class="ion-padding">
-      <ion-button expand="block" (click)="saveEdit()" [disabled]="isSaving">
+      <ion-button expand="block" (click)="saveEdit()" [disabled]="isSaving" class="ion-margin-top">
         <ion-icon name="save-outline" slot="start"></ion-icon>
         Save Changes
       </ion-button>
-      <ion-button expand="block" fill="outline" (click)="closeEdit()">
-        <ion-icon name="close-outline" slot="start"></ion-icon>
-        Cancel
-      </ion-button>
-    </ion-footer>
+    </ion-content>
   </ng-template>
 </ion-modal>
 
-<!-- ========== Delete Confirmation Alert ========== -->
 <ion-alert
   [isOpen]="showDeleteAlert"
   header="Confirm Delete"
-  message="Are you sure you want to delete this item? This action cannot be undone."
+  message="Are you sure you want to delete this item?"
   [buttons]="deleteAlertButtons">
 </ion-alert>

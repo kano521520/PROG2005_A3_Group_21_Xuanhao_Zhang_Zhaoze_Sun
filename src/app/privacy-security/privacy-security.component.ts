@@ -11,7 +11,6 @@ import { helpCircleOutline, shieldCheckmarkOutline, lockClosedOutline, serverOut
 @Component({
   selector: 'app-privacy-security',
   templateUrl: './privacy-security.component.html',
-  styleUrls: ['./privacy-security.component.scss'],
   standalone: true,
   imports: [
     CommonModule, IonHeader, IonToolbar, IonTitle, IonContent, IonCard, 
@@ -19,14 +18,12 @@ import { helpCircleOutline, shieldCheckmarkOutline, lockClosedOutline, serverOut
     IonButton, IonIcon, IonText, IonList, IonItem, IonLabel
   ]
 })
-export class PrivacySecurityComponent implements OnInit {
+export class PrivacySecurityComponent {
   constructor() {
     addIcons({ helpCircleOutline, shieldCheckmarkOutline, lockClosedOutline, serverOutline });
   }
 
-  ngOnInit() {}
-
   showHelp() {
-    alert("Privacy Page: This section explains the security measures implemented in the ArtGalley Mobile System.");
+    alert("SECURITY HELP:\n- This page details mobile app security best practices.\n- Analysis covers data validation and transmission safety.");
   }
 }

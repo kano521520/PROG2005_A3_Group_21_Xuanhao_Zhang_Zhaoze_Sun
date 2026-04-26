@@ -1,12 +1,12 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/inventory-list"></ion-back-button>
+      <ion-back-button defaultHref="/tabs/inventory-list"></ion-back-button>
     </ion-buttons>
     <ion-title>Add New Item</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="saveItem()" [disabled]="isLoading">
-        <ion-icon name="save-outline" slot="icon-only"></ion-icon>
+      <ion-button (click)="showHelp()">
+        <ion-icon name="help-circle-outline" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -18,33 +18,33 @@
   <ion-list>
     <ion-item>
       <ion-label position="stacked">Item Name *</ion-label>
-      <ion-input [(ngModel)]="newItem.item_name" type="text" maxlength="50" required></ion-input>
+      <ion-input [(ngModel)]="newItem.item_name" type="text" maxlength="50"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="stacked">Category *</ion-label>
-      <ion-select [(ngModel)]="newItem.category" interface="action-sheet" placeholder="Select a category">
-        <ion-select-option value="1">Electronics</ion-select-option>
-        <ion-select-option value="2">Furniture</ion-select-option>
-        <ion-select-option value="3">Clothing</ion-select-option>
-        <ion-select-option value="4">Tools</ion-select-option>
-        <ion-select-option value="5">Miscellaneous</ion-select-option>
+      <ion-select [(ngModel)]="newItem.category" placeholder="Select a category">
+        <ion-select-option value="Electronics">Electronics</ion-select-option>
+        <ion-select-option value="Furniture">Furniture</ion-select-option>
+        <ion-select-option value="Clothing">Clothing</ion-select-option>
+        <ion-select-option value="Tools">Tools</ion-select-option>
+        <ion-select-option value="Miscellaneous">Miscellaneous</ion-select-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label position="stacked">Supplier Name *</ion-label>
-      <ion-input [(ngModel)]="newItem.supplier_name" type="text" maxlength="50" required></ion-input>
+      <ion-input [(ngModel)]="newItem.supplier_name" type="text" maxlength="50"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="stacked">Price ($) *</ion-label>
-      <ion-input [(ngModel)]="newItem.price" type="number" min="0" step="0.01" required></ion-input>
+      <ion-input [(ngModel)]="newItem.price" type="number"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="stacked">Quantity *</ion-label>
-      <ion-input [(ngModel)]="newItem.quantity" type="number" min="0" step="1" (ionChange)="onQuantityChange()" required></ion-input>
+      <ion-input [(ngModel)]="newItem.quantity" type="number" (ionChange)="onQuantityChange()"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -54,13 +54,7 @@
 
     <ion-item>
       <ion-label position="stacked">Special Note</ion-label>
-      <ion-input [(ngModel)]="newItem.special_note" type="text" maxlength="200"></ion-input>
-    </ion-item>
-
-    <ion-item lines="none">
-      <ion-text color="medium">
-        <small>Stock status will be automatically set based on quantity.</small>
-      </ion-text>
+      <ion-input [(ngModel)]="newItem.special_note" type="text"></ion-input>
     </ion-item>
   </ion-list>
 

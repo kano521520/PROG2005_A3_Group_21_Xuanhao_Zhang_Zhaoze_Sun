@@ -14,24 +14,21 @@
     <ion-card-header>
       <ion-card-title>
         <ion-icon name="shield-checkmark-outline" color="primary"></ion-icon>
-        Mobile Security Architecture
+        Mobile Security
       </ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-text>
-        <p>Developing for mobile platforms like the ArtGalley system requires distinct security strategies compared to web apps. Our architecture addresses the following:</p>
-      </ion-text>
       <ion-list lines="none">
         <ion-item>
           <ion-icon name="lock-closed-outline" slot="start" color="success"></ion-icon>
           <ion-label class="ion-text-wrap">
-            <strong>Input Validation:</strong> All inventory fields (Price, Quantity) use strict numeric constraints to prevent SQL injection and data corruption.
+            <strong>Input Validation:</strong> Strict numeric constraints are applied to prevent data corruption.
           </ion-label>
         </ion-item>
         <ion-item>
           <ion-icon name="server-outline" slot="start" color="success"></ion-icon>
           <ion-label class="ion-text-wrap">
-            <strong>Data Transmission:</strong> The app interacts with the remote ArtGalley REST API using encrypted protocols, ensuring inventory data is not exposed during transit.
+            <strong>Data Transmission:</strong> App uses encrypted REST API protocols for secure inventory management.
           </ion-label>
         </ion-item>
       </ion-list>
@@ -40,23 +37,16 @@
 
   <ion-card mode="ios">
     <ion-card-header>
-      <ion-card-title>Privacy Requirements</ion-card-title>
+      <ion-card-title>Privacy Policy</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-text>
-        <p>To comply with ULO4 requirements, this mobile application ensures:</p>
         <ul>
-          <li><strong>Principle of Least Privilege:</strong> Only necessary inventory data is requested from the server.</li>
-          <li><strong>Unique Identification:</strong> The system enforces unique item names to maintain database integrity and prevent record overwriting.</li>
-          <li><strong>Local Session Security:</strong> Temporary data held in memory is cleared when the mobile application session is terminated.</li>
+          <li><strong>Principle of Least Privilege:</strong> Minimal data access.</li>
+          <li><strong>Data Integrity:</strong> Unique naming enforced.</li>
+          <li><strong>Session Security:</strong> Memory cleared after termination.</li>
         </ul>
       </ion-text>
     </ion-card-content>
   </ion-card>
-
-  <div class="ion-padding-horizontal ion-margin-top">
-    <ion-text color="medium" class="ion-text-center">
-      <p><small>PROG2005 Assignment 3 - Security Policy v1.0</small></p>
-    </ion-text>
-  </div>
 </ion-content>

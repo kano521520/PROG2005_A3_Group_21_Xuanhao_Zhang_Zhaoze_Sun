@@ -5,7 +5,7 @@ import {
   IonHeader, IonToolbar, IonTitle, IonContent, IonSearchbar, 
   IonButtons, IonButton, IonIcon, IonBadge, IonProgressBar, 
   IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, 
-  IonCardContent, IonChip, IonLabel 
+  IonCardContent, IonChip, IonLoading, IonLabel 
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { helpCircleOutline, star, refreshOutline, archiveOutline } from 'ionicons/icons';
@@ -20,7 +20,7 @@ import { InventoryItem } from '../models/inventory.model';
     CommonModule, FormsModule, IonHeader, IonToolbar, IonTitle, IonContent, 
     IonSearchbar, IonButtons, IonButton, IonIcon, IonBadge, 
     IonProgressBar, IonCard, IonCardHeader, IonCardSubtitle, 
-    IonCardTitle, IonCardContent, IonChip, IonLabel
+    IonCardTitle, IonCardContent, IonChip, IonLoading, IonLabel
   ]
 })
 export class InventoryListComponent implements OnInit {
@@ -68,7 +68,7 @@ export class InventoryListComponent implements OnInit {
     });
   }
 
-  showPageHelp() {
-    alert("Help: Search products by name. Star indicates featured items.");
+  showHelp() {
+    alert("INVENTORY HELP:\n- View all stock items from server.\n- Use the search bar to filter by name.\n- Gold star indicates a featured item.");
   }
 }
